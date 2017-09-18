@@ -1,64 +1,23 @@
 package model;
 
-import java.io.FileReader;
-import java.io.IOException;
-
 public class GestionDatos {
-	
-	private String FICHERO_ENTRADA="entrada.txt";
-	private FileReader fr=null;
-	
-	public GestionDatos() {	
-		
-	}
-	
-	public void openFile() throws IOException {	
-		
-		System.out.println("Entro en open");
-		fr = new FileReader(FICHERO_ENTRADA);
-	
-	}
-	
-	public void closeFile() throws IOException {
-		
-		fr.close();
-		
-	}
-	
-	public String prueba_funcion() {
 
-		System.out.println("entramos en prueba");
-		
-		try {
-			openFile();
-		} catch (IOException e) {
-			System.err.println("Sale un error al abrir");
-			//e.printStackTrace();
-			return "ERROR";
-		}
-
-		String ret="";
-		int c;
-		System.out.print("He leÃ­do ");
-		try {
-			while ((c = fr.read()) != -1) {
-				ret=ret+(char) c;
-				//System.out.print((char) c);
-			}
-		} catch (IOException e) {
-			System.err.println("Sale un error al leer");
-			//e.printStackTrace();
-		}
-		
-		try {
-			closeFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}				
-				
-		return ret;		
+	public GestionDatos() {
 
 	}
+
+	//TODO: Implementa una función para abrir ficheros
+	
+	//TODO: Implementa una función para cerrar ficheros
+	
+	public boolean compararContenido (String fichero1, String fichero2){
+		//TODO: Implementa la función
+		return true;
+	}
+	
+	public int buscarPalabra (String fichero1, String palabra, boolean primera_aparicion){
+		//TODO: Implementa la función
+		return 1;
+	}	
 
 }

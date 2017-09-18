@@ -1,56 +1,101 @@
 package view;
 
+import java.awt.Dimension;
+
 import javax.swing.*;
 
 public class LaunchView extends JFrame {
 
-	private JButton actividad1c;
+	private JButton comparar,buscar;
 	private JTextArea textArea;
+	private JTextField fichero1,fichero2,palabra;
+	private JLabel label_f1,label_f2,label_pal;
+	
+	private JPanel panel;
 	
 	public LaunchView() {
 		
-		setBounds(200,200,800,450);
+		setBounds(200,200,900,450);
 		setTitle("Proyecto Buffers");	
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		
-		actividad1c = new JButton("Actividad 1c");		
-		JButton actividad1d = new JButton("Actividad 1d");
-		JButton actividad1e = new JButton("Actividad 1e");
-		JButton actividad1f = new JButton("Actividad 1f");
-		JButton actividad1g = new JButton("Actividad 1g");
-		JButton actividad1h = new JButton("Actividad 1h");
+		comparar = new JButton("Comparar contenido");
+		comparar.setPreferredSize(new Dimension(150, 26));
+		buscar = new JButton("Buscar palabra");
+		buscar.setPreferredSize(new Dimension(150, 26));
+					
+		fichero1 = new JTextField("",10);
+		fichero2 = new JTextField("",10);
+		palabra = new JTextField("",10);
+		
+		label_f1 = new JLabel("Fichero 1:");
+		label_f2 = new JLabel("Fichero 2:");
+		label_pal = new JLabel("Palabra:");
 
-		textArea = new JTextArea(25, 70);
+		textArea = new JTextArea(20, 70);
 		textArea.setBounds(50,50,50,50);
-		textArea.setEditable(false);
+		textArea.setEditable(false);		
 		
-		panel.add(actividad1c);
-		panel.add(actividad1d);
-		panel.add(actividad1e);
-		panel.add(actividad1f);
-		panel.add(actividad1g);
-		panel.add(actividad1h);
+		panel.add(comparar);
+		panel.add(buscar);
+		panel.add(label_f1);
+		panel.add(fichero1);
+		panel.add(label_f2);
+		panel.add(fichero2);
+		panel.add(label_pal);
+		panel.add(palabra);
 		panel.add(textArea);
 		
-        // AÃ±adimos el JPanel al JFrame
+        // Añadimos el JPanel al JFrame
         this.getContentPane().add(panel);		
 		
-	}
-
-	public JButton getActividad1c() {
-		return actividad1c;
-	}
-
-	public void setActividad1c(JButton actividad1c) {
-		this.actividad1c = actividad1c;
-	}
+	}	
 	
+	public JButton getComparar() {
+		return comparar;
+	}
+
+	public void setComparar(JButton comparar) {
+		this.comparar = comparar;
+	}
+
+	public JButton getBuscar() {
+		return buscar;
+	}
+
+	public void setBuscar(JButton buscar) {
+		this.buscar = buscar;
+	}
+
 	public JTextArea getTextArea() {
 		return textArea;
 	}
 
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
+	}
+			
+	public JTextField getFichero1() {
+		return fichero1;
+	}
+
+	public void setFichero1(JTextField fichero1) {
+		this.fichero1 = fichero1;
+	}
+
+	public JTextField getFichero2() {
+		return fichero2;
+	}
+
+	public void setFichero2(JTextField fichero2) {
+		this.fichero2 = fichero2;
+	}
+
+	public void showError(String m){
+		JOptionPane.showMessageDialog(this.panel,
+			    m,
+			    "Error",
+			    JOptionPane.ERROR_MESSAGE);
 	}
 
 

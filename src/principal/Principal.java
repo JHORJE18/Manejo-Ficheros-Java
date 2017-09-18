@@ -8,10 +8,8 @@ import controller.*;
 
 public class Principal {
 
-	public static void main(String[] args) {
-		
-		System.out.println("Lanzamos la aplicación");
-		
+	public static void main(String[] args) {		
+	
 		GestionDatos model = new GestionDatos();
 		
 		LaunchView view = new LaunchView();
