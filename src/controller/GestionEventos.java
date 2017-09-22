@@ -21,6 +21,7 @@ public class GestionEventos {
 		actionListener_comparar = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO: Llamar a la funci�n call_compararContenido
+				call_compararContenido();
 			}
 		};
 		view.getComparar().addActionListener(actionListener_comparar);
@@ -28,6 +29,7 @@ public class GestionEventos {
 		actionListener_buscar = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO: Llamar a la funci�n call_buscarPalabra
+				call_buscarPalabra();
 			}
 		};
 		view.getBuscar().addActionListener(actionListener_buscar);
