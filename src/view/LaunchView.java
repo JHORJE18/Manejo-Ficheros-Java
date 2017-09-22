@@ -15,7 +15,7 @@ public class LaunchView extends JFrame {
 	
 	public LaunchView() {
 		
-		setBounds(200,200,900,450);
+		setBounds(200,200,1000,450);
 		setTitle("Proyecto Buffers");	
 		panel = new JPanel();
 		
@@ -46,7 +46,7 @@ public class LaunchView extends JFrame {
 		panel.add(palabra);
 		panel.add(textArea);
 		
-        // Añadimos el JPanel al JFrame
+        // Aï¿½adimos el JPanel al JFrame
         this.getContentPane().add(panel);		
 		
 	}	
