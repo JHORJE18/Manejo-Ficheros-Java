@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JTextArea;
 
 import model.*;
 import view.*;
@@ -17,11 +20,16 @@ public class GestionEventos {
 		this.view = view;
 	}
 
-	public void contol() {
+	public void contol() throws IOException {
 		actionListener_comparar = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO: Llamar a la funci�n call_compararContenido
-				call_compararContenido();
+				try {
+					call_compararContenido();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		view.getComparar().addActionListener(actionListener_comparar);
@@ -35,9 +43,17 @@ public class GestionEventos {
 		view.getBuscar().addActionListener(actionListener_buscar);
 	}
 
-	private int call_compararContenido() {
+	private int call_compararContenido() throws IOException {
 
 		// TODO: Llamar a la funci�n compararContenido de GestionDatos
+		Boolean coinciden = model.compararContenido(view.getFichero1().getText(), view.getFichero2().getText());
+
+		if (coinciden){
+			view.setTextArea("Los archivos coinciden");
+		} else {
+			view.setTextArea("Los archivos son diferentes");
+		}
+
 		// TODO: Gestionar excepciones
 		return 1;
 	}
