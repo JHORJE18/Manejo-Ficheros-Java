@@ -1,5 +1,7 @@
 package principal;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 import model.*;
@@ -8,7 +10,7 @@ import controller.*;
 
 public class Principal {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) throws IOException {		
 	
 		GestionDatos model = new GestionDatos();
 		
