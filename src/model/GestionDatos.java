@@ -31,21 +31,20 @@ public class GestionDatos {
 		}
 	}
 	
-	/*
-	 * public static void muestraContenido(String archivo) throws FileNotFoundException, IOException {
-        String cadena;
-        FileReader f = new FileReader(archivo);
-        BufferedReader b = new BufferedReader(f);
-        while((cadena = b.readLine())!=null) {
-            System.out.println(cadena);
-        }
-        b.close();
-    	}
-	 */
-	
-	public boolean compararContenido (String fichero1, String fichero2){
+	public boolean compararContenido (String fichero1, String fichero2) throws IOException{
 		//TODO: Implementa la funci�n
+		BufferedReader archivo1 = abrirFichero(fichero1);
+		BufferedReader archivo2 = abrirFichero(fichero2);
 		
+		String cadena1, cadena2;
+		
+		while ((cadena1 = archivo1.readLine()) != null && (cadena2 = archivo2.readLine()) != null){
+			if (!cadena1.equals(cadena2)){
+				cerrarFichero(archivo1);
+				cerrarFichero(archivo2);
+				return false;
+			}
+		}
 		return true;
 	}
 	
