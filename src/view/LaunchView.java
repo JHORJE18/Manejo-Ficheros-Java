@@ -71,8 +71,8 @@ public class LaunchView extends JFrame {
 		return textArea;
 	}
 
-	public void setTextArea(JTextArea textArea) {
-		this.textArea = textArea;
+	public void setTextArea(String txt) {
+		this.textArea.setText(txt);
 	}
 			
 	public JTextField getFichero1() {
