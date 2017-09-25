@@ -86,6 +86,10 @@ public class LaunchView extends JFrame {
 	public JTextField getFichero2() {
 		return fichero2;
 	}
+	
+	public JTextField getPalabra() {
+		return palabra;
+	}
 
 	public void setFichero2(JTextField fichero2) {
 		this.fichero2 = fichero2;
