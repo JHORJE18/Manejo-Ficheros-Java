@@ -75,6 +75,8 @@ public class LaunchView extends JFrame {
 		return textArea;
 	}
 
+	public void setTextArea(String txt) {
+		this.textArea.setText(txt);
 	}
 			
 	public JTextField getFichero1() {
@@ -95,6 +97,10 @@ public class LaunchView extends JFrame {
 
 	public void setFichero2(JTextField fichero2) {
 		this.fichero2 = fichero2;
+	}
+	
+	public JCheckBox getPrimera(){
+		return primera;
 	}
 
 	public void showError(String m){
