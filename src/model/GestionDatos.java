@@ -48,9 +48,22 @@ public class GestionDatos {
 		return true;
 	}
 	
-	public int buscarPalabra (String fichero1, String palabra, boolean primera_aparicion){
+	public int buscarPalabra (String fichero1, String palabra, boolean primera_aparicion) throws IOException{
 		//TODO: Implementa la funci�n
-		return 1;
+		
+		BufferedReader archivo1 = abrirFichero(fichero1);
+		String cadena1 ;
+		
+		//Primera aparicion
+		int i=0;
+		while ((cadena1 = archivo1.readLine()) != null){
+			i++;
+			if (cadena1.equals(palabra)){
+				cerrarFichero(archivo1);
+				return i;
+			}
+		}
+		return -1;
 	}	
 
 }

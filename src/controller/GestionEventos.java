@@ -37,7 +37,12 @@ public class GestionEventos {
 		actionListener_buscar = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO: Llamar a la funci�n call_buscarPalabra
-				call_buscarPalabra();
+				try {
+					call_buscarPalabra();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		view.getBuscar().addActionListener(actionListener_buscar);
@@ -58,9 +63,10 @@ public class GestionEventos {
 		return 1;
 	}
 
-	private int call_buscarPalabra() {
+	private int call_buscarPalabra() throws IOException {
 
 		// TODO: Llamar a la funci�n buscarPalabra de GestionDatos
+		System.out.println(model.buscarPalabra(view.getFichero1().getText(), view.getPalabra().getText(), view.getPrimera().isSelected()));
 		// TODO: Gestionar excepciones
 		return 1;
 	}
