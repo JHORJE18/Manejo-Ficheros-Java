@@ -10,6 +10,7 @@ public class LaunchView extends JFrame {
 	private JTextArea textArea;
 	private JTextField fichero1,fichero2,palabra;
 	private JLabel label_f1,label_f2,label_pal;
+	private JCheckBox primera;
 	
 	private JPanel panel;
 	
@@ -31,8 +32,10 @@ public class LaunchView extends JFrame {
 		label_f1 = new JLabel("Fichero 1:");
 		label_f2 = new JLabel("Fichero 2:");
 		label_pal = new JLabel("Palabra:");
+		
+		primera = new JCheckBox("Primera aparición");
 
-		textArea = new JTextArea(20, 70);
+		textArea = new JTextArea(20, 80);
 		textArea.setBounds(50,50,50,50);
 		textArea.setEditable(false);		
 		
@@ -44,9 +47,10 @@ public class LaunchView extends JFrame {
 		panel.add(fichero2);
 		panel.add(label_pal);
 		panel.add(palabra);
+		panel.add(primera);
 		panel.add(textArea);
 		
-        // A�adimos el JPanel al JFrame
+        // Añadimos el JPanel al JFrame
         this.getContentPane().add(panel);		
 		
 	}	
@@ -71,8 +75,6 @@ public class LaunchView extends JFrame {
 		return textArea;
 	}
 
-	public void setTextArea(String txt) {
-		this.textArea.setText(txt);
 	}
 			
 	public JTextField getFichero1() {
