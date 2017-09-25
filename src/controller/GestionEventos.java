@@ -66,8 +66,22 @@ public class GestionEventos {
 	private int call_buscarPalabra() throws IOException {
 
 		// TODO: Llamar a la funci�n buscarPalabra de GestionDatos
-		System.out.println(model.buscarPalabra(view.getFichero1().getText(), view.getPalabra().getText(), view.getPrimera().isSelected()));
-		// TODO: Gestionar excepciones
+		int linea = model.buscarPalabra(view.getFichero1().getText(), view.getPalabra().getText(), view.getPrimera().isSelected());
+		
+		//Numero de la palabra que imprime
+		String posicion = "";
+		if (view.getPrimera().isSelected()){
+			posicion = "primera";
+		} else {
+			posicion = "última";
+		}
+		
+		if (linea != -1){
+			view.setTextArea("Se ha encontrado la " + posicion + " palabra " + view.getPalabra().getText() + " en la línea " + linea + " dentro del fichero " + view.getFichero1().getText());
+		} else {
+			view.setTextArea("No se ha encontrao la palabra " + view.getPalabra().getText() + " en el fichero " + view.getFichero1().getText());
+		}
+		
 		return 1;
 	}
 

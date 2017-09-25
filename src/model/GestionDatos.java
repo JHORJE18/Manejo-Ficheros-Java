@@ -52,17 +52,32 @@ public class GestionDatos {
 		//TODO: Implementa la funci�n
 		
 		BufferedReader archivo1 = abrirFichero(fichero1);
-		String cadena1 ;
+		String cadena1;
 		
-		//Primera aparicion
-		int i=0;
-		while ((cadena1 = archivo1.readLine()) != null){
-			i++;
-			if (cadena1.equals(palabra)){
-				cerrarFichero(archivo1);
-				return i;
+		if (primera_aparicion){
+			//Primera aparicion
+			int i=0;
+			while ((cadena1 = archivo1.readLine()) != null){
+				i++;
+				if (cadena1.equals(palabra)){
+					cerrarFichero(archivo1);
+					return i;
+				}
 			}
+		} else {
+			//Ultima palabra encontrada
+			int i=0, line = -1;
+			while ((cadena1 = archivo1.readLine()) != null){
+				i++;
+				if (cadena1.equals(palabra)){
+					line = i;
+				}
+			}
+			
+			//Devuelve ultima line encontrada o ninguna
+			return line;
 		}
+		
 		return -1;
 	}	
 
