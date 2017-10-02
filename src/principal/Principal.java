@@ -9,6 +9,8 @@ import view.*;
 import controller.*;
 
 public class Principal {
+	
+	static String v = "1.C";
 
 	public static void main(String[] args) throws IOException {		
 	
@@ -17,6 +19,8 @@ public class Principal {
 		LaunchView view = new LaunchView();
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setVisible(true);
+		
+		System.out.println("Versión actual: " + v);
 		
 		GestionEventos controller = new GestionEventos(model,view);
 		controller.contol();
