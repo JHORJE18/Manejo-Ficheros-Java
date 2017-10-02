@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class LaunchView extends JFrame {
 
-	private JButton comparar,buscar;
+	private JButton comparar,buscar,copiar;
 	private JTextArea textArea;
 	private JTextField fichero1,fichero2,palabra;
 	private JLabel label_f1,label_f2,label_pal;
@@ -24,6 +24,8 @@ public class LaunchView extends JFrame {
 		comparar.setPreferredSize(new Dimension(150, 26));
 		buscar = new JButton("Buscar palabra");
 		buscar.setPreferredSize(new Dimension(150, 26));
+		copiar = new JButton("Copiar fichero");
+		copiar.setPreferredSize(new Dimension(150, 26));
 					
 		fichero1 = new JTextField("",10);
 		fichero2 = new JTextField("",10);
@@ -41,6 +43,7 @@ public class LaunchView extends JFrame {
 		
 		panel.add(comparar);
 		panel.add(buscar);
+		panel.add(copiar);
 		panel.add(label_f1);
 		panel.add(fichero1);
 		panel.add(label_f2);
@@ -52,7 +55,6 @@ public class LaunchView extends JFrame {
 		
         // Añadimos el JPanel al JFrame
         this.getContentPane().add(panel);		
-		
 	}	
 	
 	public JButton getComparar() {
@@ -61,6 +63,14 @@ public class LaunchView extends JFrame {
 
 	public void setComparar(JButton comparar) {
 		this.comparar = comparar;
+	}
+	
+	public JButton getCopiar() {
+		return copiar;
+	}
+
+	public void setCopiar(JButton comparar) {
+		this.copiar = copiar;
 	}
 
 	public JButton getBuscar() {
