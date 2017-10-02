@@ -28,7 +28,7 @@ public class GestionEventos {
 					call_compararContenido();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					view.showError("Error al proceder a comparar los ficheros");
 				}
 			}
 		};
@@ -42,6 +42,7 @@ public class GestionEventos {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					view.showError("Error al buscar la palabra");
 				}
 			}
 		};
