@@ -13,7 +13,7 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo;
 
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
@@ -33,6 +33,7 @@ public class GestionEventos {
 			}
 		};
 		view.getComparar().addActionListener(actionListener_comparar);
+		view.getMntmCompararContenido().addActionListener(actionListener_comparar);
 
 		actionListener_buscar = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -47,6 +48,7 @@ public class GestionEventos {
 			}
 		};
 		view.getBuscar().addActionListener(actionListener_buscar);
+		view.getMntmBuscarPalabra().addActionListener(actionListener_buscar);
 		
 		actionListener_copiar = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -62,6 +64,37 @@ public class GestionEventos {
 			}
 		};
 		view.getCopiar().addActionListener(actionListener_copiar);
+		view.getMntmCopiarArchivo().addActionListener(actionListener_copiar);
+		
+		actionListener_rotar = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				// TODO: Llamar a la funci�n call_buscarPalabra
+				try {
+					System.out.println("Llamo al metodo");
+					call_Rotar();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					System.out.print(e);
+					view.showError("Error al intentar rotar");
+				}
+			}
+		};
+		view.getMntmRotar().addActionListener(actionListener_rotar);
+		
+		actionListener_espejo = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				// TODO: Llamar a la funci�n call_buscarPalabra
+				try {
+					System.out.println("Llamo al metodo");
+					call_Espejo();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					System.out.print(e);
+					view.showError("Error al intentar aplicar el modo Espejo");
+				}
+			}
+		};
+		view.getMntmEspejo().addActionListener(actionListener_espejo);
 	}
 
 	private int call_compararContenido() throws IOException {
@@ -111,6 +144,18 @@ public class GestionEventos {
 		}
 		return status_copia;
 		
+	}
+	
+	private int call_Rotar() throws IOException {
+		view.showError("La función de rotar imagen, aún no esta desarrollada");
+		
+		return 1;		
+	}
+	
+	private int call_Espejo() throws IOException{
+		view.showError("La función de aplicar modo espejo a la imagen, aún no esta desarrollada");
+
+		return 1;
 	}
 
 }
