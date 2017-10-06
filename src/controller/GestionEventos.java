@@ -13,7 +13,7 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private ActionListener actionListener_comparar, actionListener_buscar;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar;
 
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
@@ -47,6 +47,21 @@ public class GestionEventos {
 			}
 		};
 		view.getBuscar().addActionListener(actionListener_buscar);
+		
+		actionListener_copiar = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				// TODO: Llamar a la funci�n call_buscarPalabra
+				try {
+					System.out.println("Llamo al metodo");
+					call_Copiar();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					view.showError("Error al intentar copiar");
+				}
+			}
+		};
+		view.getCopiar().addActionListener(actionListener_copiar);
 	}
 
 	private int call_compararContenido() throws IOException {
@@ -84,6 +99,18 @@ public class GestionEventos {
 		}
 		
 		return 1;
+	}
+	
+	private int call_Copiar() throws IOException {
+		
+		//LLamar funcion copiar ficheros
+		int status_copia = model.copiarFicehro(view.getFichero1().getText(), view.getFichero2().getText());
+		
+		if (status_copia != -1){
+			view.setTextArea("Se ha copiado correctametnte con un peso de " + status_copia + " bytes");
+		}
+		return status_copia;
+		
 	}
 
 }

@@ -21,6 +21,11 @@ public class GestionDatos {
 		}
 	}
 	
+	//Abrir ficheros binarios
+	public void abrirFicheroBin (String fichero){
+		
+	}
+	
 	//TODO: Implementa una funci�n para cerrar ficheros
 	public void cerrarFichero(BufferedReader fichero) {
 		try {
@@ -81,4 +86,29 @@ public class GestionDatos {
 		return -1;
 	}	
 
+	
+	//Funcion copiar ficheros
+	public int copiarFicehro(String fichero1, String fichero2) throws IOException{
+		
+        File origen = new File(fichero1);
+        File destino = new File(fichero2);
+        
+        if (destino.exists()){
+        	//TODO: Error no puedo crear
+        }
+        destino.createNewFile();
+        
+        DataInputStream din = new DataInputStream(new FileInputStream(origen));
+        DataOutputStream dout = new DataOutputStream(new FileOutputStream(destino));
+
+        int c = -1; 
+        int bites = 0;
+        while((c =  din.read()) !=-1)
+        {
+        	bites++;
+        	dout.write((byte)c);
+        }
+        
+		return bites;
+	}
 }
