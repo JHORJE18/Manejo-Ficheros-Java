@@ -13,7 +13,52 @@ public class LaunchView extends JFrame {
 	private JCheckBox primera;
 	
 	private JPanel panel;
+	private JMenuBar menuBar;
+	private JMenu mnArchivo;
+	private JMenu mnImagen;
+	private JMenuItem mntmCompararContenido, mntmBuscarPalabra, mntmCopiarArchivo;
+	private JMenuItem mntmRotar, mntmEspejo;
 	
+	public JMenuItem getMntmCompararContenido() {
+		return mntmCompararContenido;
+	}
+
+	public void setMntmCompararContenido(JMenuItem mntmCompararContenido) {
+		this.mntmCompararContenido = mntmCompararContenido;
+	}
+
+	public JMenuItem getMntmBuscarPalabra() {
+		return mntmBuscarPalabra;
+	}
+
+	public void setMntmBuscarPalabra(JMenuItem mntmBuscarPalabra) {
+		this.mntmBuscarPalabra = mntmBuscarPalabra;
+	}
+
+	public JMenuItem getMntmCopiarArchivo() {
+		return mntmCopiarArchivo;
+	}
+
+	public void setMntmCopiarArchivo(JMenuItem mntmCopiarArchivo) {
+		this.mntmCopiarArchivo = mntmCopiarArchivo;
+	}
+
+	public JMenuItem getMntmRotar() {
+		return mntmRotar;
+	}
+
+	public void setMntmRotar(JMenuItem mntmRotar) {
+		this.mntmRotar = mntmRotar;
+	}
+
+	public JMenuItem getMntmEspejo() {
+		return mntmEspejo;
+	}
+
+	public void setMntmEspejo(JMenuItem mntmEspejo) {
+		this.mntmEspejo = mntmEspejo;
+	}
+
 	public LaunchView() {
 		
 		setBounds(200,200,1000,450);
@@ -55,6 +100,30 @@ public class LaunchView extends JFrame {
 		
         // Añadimos el JPanel al JFrame
         this.getContentPane().add(panel);		
+        
+        menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        
+        mnArchivo = new JMenu("Archivo");
+        menuBar.add(mnArchivo);
+        
+        mntmCompararContenido = new JMenuItem("Comparar contenido");
+        mnArchivo.add(mntmCompararContenido);
+        
+        mntmBuscarPalabra = new JMenuItem("Buscar palabra");
+        mnArchivo.add(mntmBuscarPalabra);
+        
+        mntmCopiarArchivo = new JMenuItem("Copiar archivo");
+        mnArchivo.add(mntmCopiarArchivo);
+        
+        mnImagen = new JMenu("Imagen");
+        menuBar.add(mnImagen);
+        
+        mntmRotar = new JMenuItem("Rotar 90º");
+        mnImagen.add(mntmRotar);
+        
+        mntmEspejo = new JMenuItem("Espejo");
+        mnImagen.add(mntmEspejo);
 	}	
 	
 	public JButton getComparar() {
