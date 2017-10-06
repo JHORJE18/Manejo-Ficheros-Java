@@ -56,7 +56,7 @@ public class GestionEventos {
 					call_Copiar();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.print(e);
 					view.showError("Error al intentar copiar");
 				}
 			}

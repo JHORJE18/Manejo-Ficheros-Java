@@ -90,11 +90,19 @@ public class GestionDatos {
 	//Funcion copiar ficheros
 	public int copiarFicehro(String fichero1, String fichero2) throws IOException{
 		
+		if (fichero2 == "") {
+			System.out.println("Esta vacio");
+			throw new IOException("El destino esta vacio");
+		} else {
+			System.out.println("Copiar a " + fichero2);
+		}
+		
         File origen = new File(fichero1);
         File destino = new File(fichero2);
         
         if (destino.exists()){
-        	//TODO: Error no puedo crear
+        		//TODO: Error no puedo crear
+        		throw new IOException("El archivo destino ya existe");
         }
         destino.createNewFile();
         
