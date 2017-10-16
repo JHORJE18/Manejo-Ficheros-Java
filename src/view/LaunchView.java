@@ -17,33 +17,7 @@ public class LaunchView extends JFrame {
 	private JMenu mnArchivo;
 	private JMenu mnImagen;
 	private JMenuItem mntmCompararContenido, mntmBuscarPalabra, mntmCopiarArchivo;
-	public JMenuItem getMntmGuardarLibro() {
-		return mntmGuardarLibro;
-	}
-
-	public void setMntmGuardarLibro(JMenuItem mntmGuardarLibro) {
-		this.mntmGuardarLibro = mntmGuardarLibro;
-	}
-
-	public JMenuItem getMntmRecuperarLibro() {
-		return mntmRecuperarLibro;
-	}
-
-	public void setMntmRecuperarLibro(JMenuItem mntmRecuperarLibro) {
-		this.mntmRecuperarLibro = mntmRecuperarLibro;
-	}
-
-	public JMenuItem getMntmListarLibros() {
-		return mntmListarLibros;
-	}
-
-	public void setMntmListarLibros(JMenuItem mntmListarLibros) {
-		this.mntmListarLibros = mntmListarLibros;
-	}
-
 	private JMenuItem mntmRotar, mntmEspejo;
-	private JMenu mnLibro;
-	private JMenuItem mntmGuardarLibro, mntmRecuperarLibro, mntmListarLibros;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -150,18 +124,6 @@ public class LaunchView extends JFrame {
         
         mntmEspejo = new JMenuItem("Espejo");
         mnImagen.add(mntmEspejo);
-        
-        mnLibro = new JMenu("Libro");
-        menuBar.add(mnLibro);
-        
-        mntmGuardarLibro = new JMenuItem("Guardar libro");
-        mnLibro.add(mntmGuardarLibro);
-        
-        mntmRecuperarLibro = new JMenuItem("Recuperar libro");
-        mnLibro.add(mntmRecuperarLibro);
-        
-        mntmListarLibros = new JMenuItem("Listar libros");
-        mnLibro.add(mntmListarLibros);
 	}	
 	
 	public JButton getComparar() {

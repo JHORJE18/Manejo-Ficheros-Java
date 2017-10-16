@@ -13,13 +13,11 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private CrearLibro crealibr;
-	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_guardarLibro;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo;
 
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
 		this.view = view;
-		this.crealibr = crealibr;
 	}
 
 	public void contol() throws IOException {
@@ -97,15 +95,6 @@ public class GestionEventos {
 			}
 		};
 		view.getMntmEspejo().addActionListener(actionListener_espejo);
-		
-		actionListener_guardarLibro = new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				// TODO: Llamar a la funci�n call_buscarPalabra
-					System.out.println("Llamo al metodo");
-					crealibr.setVisible(true);
-			}
-		};
-		view.getMntmGuardarLibro().addActionListener(actionListener_guardarLibro);
 	}
 
 	private int call_compararContenido() throws IOException {
