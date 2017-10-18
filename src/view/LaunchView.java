@@ -3,6 +3,9 @@ package view;
 import java.awt.Dimension;
 
 import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Window.Type;
 
 public class LaunchView extends JFrame {
 
@@ -18,6 +21,23 @@ public class LaunchView extends JFrame {
 	private JMenu mnImagen;
 	private JMenuItem mntmCompararContenido, mntmBuscarPalabra, mntmCopiarArchivo;
 	private JMenuItem mntmRotar, mntmEspejo;
+	private JPanel panelCrearLibro;
+	private JLabel lblIdentificador;
+	private JTextField txtID;
+	private JLabel lblTitulo;
+	private JTextField txtTitulo;
+	private JLabel lblAutor;
+	private JTextField txtAutor;
+	private JLabel lblAoPublicacin;
+	private JTextField txtAno;
+	private JLabel lblEditor;
+	private JTextField txtEditor;
+	private JLabel lblNmeroDePginas;
+	private JTextField txtPag;
+	private JPanel panelButtons;
+	private JButton btnGuardar;
+	private JMenu mnLibro;
+	private JMenuItem mntmGuardarLibro;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -61,45 +81,97 @@ public class LaunchView extends JFrame {
 
 	public LaunchView() {
 		
-		setBounds(200,200,1000,450);
+		setBounds(200,200,1150,350);
 		setTitle("Proyecto Buffers");	
 		panel = new JPanel();
-		
-		comparar = new JButton("Comparar contenido");
-		comparar.setPreferredSize(new Dimension(150, 26));
-		buscar = new JButton("Buscar palabra");
-		buscar.setPreferredSize(new Dimension(150, 26));
-		copiar = new JButton("Copiar fichero");
-		copiar.setPreferredSize(new Dimension(150, 26));
-					
-		fichero1 = new JTextField("",10);
-		fichero2 = new JTextField("",10);
-		palabra = new JTextField("",10);
-		
-		label_f1 = new JLabel("Fichero 1:");
-		label_f2 = new JLabel("Fichero 2:");
-		label_pal = new JLabel("Palabra:");
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		primera = new JCheckBox("Primera aparición");
-
-		textArea = new JTextArea(20, 80);
-		textArea.setBounds(50,50,50,50);
-		textArea.setEditable(false);		
-		
-		panel.add(comparar);
-		panel.add(buscar);
-		panel.add(copiar);
-		panel.add(label_f1);
-		panel.add(fichero1);
-		panel.add(label_f2);
-		panel.add(fichero2);
-		panel.add(label_pal);
-		panel.add(palabra);
 		panel.add(primera);
+
+		textArea = new JTextArea(10, 80);
+		textArea.setBounds(50,50,50,50);
+		textArea.setEditable(false);
 		panel.add(textArea);
 		
         // Añadimos el JPanel al JFrame
-        this.getContentPane().add(panel);		
+        this.getContentPane().add(panel, BorderLayout.CENTER);		
+        
+        panelCrearLibro = new JPanel();
+        panelCrearLibro.setVisible(false);
+        getContentPane().add(panelCrearLibro, BorderLayout.SOUTH);
+        
+        lblIdentificador = new JLabel("ID");
+        panelCrearLibro.add(lblIdentificador);
+        
+        txtID = new JTextField();
+        panelCrearLibro.add(txtID);
+        txtID.setColumns(10);
+        
+        lblTitulo = new JLabel("Titulo");
+        panelCrearLibro.add(lblTitulo);
+        
+        txtTitulo = new JTextField();
+        panelCrearLibro.add(txtTitulo);
+        txtTitulo.setColumns(10);
+        
+        lblAutor = new JLabel("Autor");
+        panelCrearLibro.add(lblAutor);
+        
+        txtAutor = new JTextField();
+        panelCrearLibro.add(txtAutor);
+        txtAutor.setColumns(10);
+        
+        lblAoPublicacin = new JLabel("Año");
+        panelCrearLibro.add(lblAoPublicacin);
+        
+        txtAno = new JTextField();
+        panelCrearLibro.add(txtAno);
+        txtAno.setColumns(10);
+        
+        lblEditor = new JLabel("Editor");
+        panelCrearLibro.add(lblEditor);
+        
+        txtEditor = new JTextField();
+        panelCrearLibro.add(txtEditor);
+        txtEditor.setColumns(10);
+        
+        lblNmeroDePginas = new JLabel("Pag");
+        panelCrearLibro.add(lblNmeroDePginas);
+        
+        txtPag = new JTextField();
+        panelCrearLibro.add(txtPag);
+        txtPag.setColumns(10);
+        
+        btnGuardar = new JButton("Guardar");
+        panelCrearLibro.add(btnGuardar);
+        
+        panelButtons = new JPanel();
+        getContentPane().add(panelButtons, BorderLayout.NORTH);
+        
+        comparar = new JButton("Comparar");
+        panelButtons.add(comparar);
+        comparar.setPreferredSize(new Dimension(150, 26));
+        buscar = new JButton("Buscar palabra");
+        panelButtons.add(buscar);
+        buscar.setPreferredSize(new Dimension(150, 26));
+        copiar = new JButton("Copiar fichero");
+        panelButtons.add(copiar);
+        copiar.setPreferredSize(new Dimension(150, 26));
+        
+        label_f1 = new JLabel("Fichero 1:");
+        panelButtons.add(label_f1);
+        
+		fichero1 = new JTextField("",10);
+		panelButtons.add(fichero1);
+		label_f2 = new JLabel("Fichero 2:");
+		panelButtons.add(label_f2);
+		fichero2 = new JTextField("",10);
+		panelButtons.add(fichero2);
+		label_pal = new JLabel("Palabra:");
+		panelButtons.add(label_pal);
+		palabra = new JTextField("",10);
+		panelButtons.add(palabra);
         
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -124,8 +196,42 @@ public class LaunchView extends JFrame {
         
         mntmEspejo = new JMenuItem("Espejo");
         mnImagen.add(mntmEspejo);
+        
+        mnLibro = new JMenu("Libro");
+        menuBar.add(mnLibro);
+        
+        mntmGuardarLibro = new JMenuItem("Guardar libro");
+        mnLibro.add(mntmGuardarLibro);
 	}	
 	
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
+
+	public JPanel getPanelCrearLibro() {
+		return panelCrearLibro;
+	}
+
+	public void setPanelCrearLibro(JPanel panelCrearLibro) {
+		this.panelCrearLibro = panelCrearLibro;
+	}
+	
+	public void visiblidadPanel (Boolean valor) {
+		this.panelCrearLibro.setVisible(valor);
+	}
+
+	public JMenuItem getMntmGuardarLibro() {
+		return mntmGuardarLibro;
+	}
+
+	public void setMntmGuardarLibro(JMenuItem mntmGuardarLibro) {
+		this.mntmGuardarLibro = mntmGuardarLibro;
+	}
+
 	public JButton getComparar() {
 		return comparar;
 	}

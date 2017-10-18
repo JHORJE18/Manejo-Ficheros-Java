@@ -13,7 +13,7 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_panelLibro, actionListener_guardarLibro;
 
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
@@ -95,6 +95,28 @@ public class GestionEventos {
 			}
 		};
 		view.getMntmEspejo().addActionListener(actionListener_espejo);
+		
+		actionListener_panelLibro = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				//Mostrar panel guardar libro
+				if (view.getPanelCrearLibro().isVisible()) {
+					view.visiblidadPanel(false);
+					view.getMntmGuardarLibro().setText("Guardar libro");
+				} else {
+					view.visiblidadPanel(true);
+					view.getMntmGuardarLibro().setText("Cancelar");
+				}
+			}
+		};
+		view.getMntmGuardarLibro().addActionListener(actionListener_panelLibro);
+		
+		actionListener_guardarLibro = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				//Mostrar panel guardar libro
+				System.out.println("Se procede a guardar datos del libro");
+			}
+		};
+		view.getBtnGuardar().addActionListener(actionListener_guardarLibro);
 	}
 
 	private int call_compararContenido() throws IOException {
@@ -155,6 +177,16 @@ public class GestionEventos {
 	private int call_Espejo() throws IOException{
 		view.showError("La función de aplicar modo espejo a la imagen, aún no esta desarrollada");
 
+		return 1;
+	}
+	
+	private int call_GuardarLibro() throws IOException {
+		//Creamos objeto libro
+		
+		
+		//Enviamos objeto al controlador
+		
+		
 		return 1;
 	}
 
