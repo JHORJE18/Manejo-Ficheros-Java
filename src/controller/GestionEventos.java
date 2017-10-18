@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.swing.JTextArea;
 
 import model.*;
+import objects.Libro;
 import view.*;
 
 public class GestionEventos {
@@ -114,6 +115,13 @@ public class GestionEventos {
 			public void actionPerformed(ActionEvent actionEvent) {
 				//Mostrar panel guardar libro
 				System.out.println("Se procede a guardar datos del libro");
+				
+				try {
+					call_GuardarLibro();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					view.showError("Error al intentar guardar el libro");
+				}
 			}
 		};
 		view.getBtnGuardar().addActionListener(actionListener_guardarLibro);
@@ -182,10 +190,11 @@ public class GestionEventos {
 	
 	private int call_GuardarLibro() throws IOException {
 		//Creamos objeto libro
-		
+		Libro lb = new Libro(view.getTxtID().getText(), view.getTxtTitulo().getText(), view.getTxtAutor().getText(), view.getTxtAno().getText(), view.getTxtEditor().getText(), view.getTxtPag().getText());
+		view.setTextArea("Generando libro... \n" + lb.mostrarDatos());
 		
 		//Enviamos objeto al controlador
-		
+		int estado = 1;
 		
 		return 1;
 	}

@@ -204,6 +204,54 @@ public class LaunchView extends JFrame {
         mnLibro.add(mntmGuardarLibro);
 	}	
 	
+	public JTextField getTxtID() {
+		return txtID;
+	}
+
+	public void setTxtID(JTextField txtID) {
+		this.txtID = txtID;
+	}
+
+	public JTextField getTxtTitulo() {
+		return txtTitulo;
+	}
+
+	public void setTxtTitulo(JTextField txtTitulo) {
+		this.txtTitulo = txtTitulo;
+	}
+
+	public JTextField getTxtAutor() {
+		return txtAutor;
+	}
+
+	public void setTxtAutor(JTextField txtAutor) {
+		this.txtAutor = txtAutor;
+	}
+
+	public JTextField getTxtAno() {
+		return txtAno;
+	}
+
+	public void setTxtAno(JTextField txtAno) {
+		this.txtAno = txtAno;
+	}
+
+	public JTextField getTxtEditor() {
+		return txtEditor;
+	}
+
+	public void setTxtEditor(JTextField txtEditor) {
+		this.txtEditor = txtEditor;
+	}
+
+	public JTextField getTxtPag() {
+		return txtPag;
+	}
+
+	public void setTxtPag(JTextField txtPag) {
+		this.txtPag = txtPag;
+	}
+
 	public JButton getBtnGuardar() {
 		return btnGuardar;
 	}
