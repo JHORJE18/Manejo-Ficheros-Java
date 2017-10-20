@@ -40,6 +40,7 @@ public class LaunchView extends JFrame {
 	private JMenuItem mntmGuardarLibro;
 	private JMenuItem mntmRecuperarLibro;
 	private JButton btnRecuperar;
+	private JMenuItem mntmListarLibros;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -92,9 +93,10 @@ public class LaunchView extends JFrame {
 		panel.add(primera);
 
 		textArea = new JTextArea(10, 80);
-		textArea.setBounds(50,50,50,50);
 		textArea.setEditable(false);
-		panel.add(textArea);
+		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setBounds(50,50,50,50);
+		panel.add(scroll);
 		
         // Añadimos el JPanel al JFrame
         this.getContentPane().add(panel, BorderLayout.CENTER);		
@@ -210,8 +212,19 @@ public class LaunchView extends JFrame {
         
         mntmRecuperarLibro = new JMenuItem("Recuperar libro");
         mnLibro.add(mntmRecuperarLibro);
+        
+        mntmListarLibros = new JMenuItem("Listar libros");
+        mnLibro.add(mntmListarLibros);
 	}	
 	
+	public JMenuItem getMntmListarLibros() {
+		return mntmListarLibros;
+	}
+
+	public void setMntmListarLibros(JMenuItem mntmListarLibros) {
+		this.mntmListarLibros = mntmListarLibros;
+	}
+
 	public JButton getBtnRecuperar() {
 		return btnRecuperar;
 	}

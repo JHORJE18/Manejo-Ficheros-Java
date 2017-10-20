@@ -189,8 +189,33 @@ public class GestionDatos {
 		return lbRecu;
 	}
 	
-	public ArrayList<Libro> recuperar_todos(){
+	public ArrayList<Libro> recuperar_todos() throws FileNotFoundException, IOException{
 		ArrayList <Libro> biblioteca = new ArrayList <Libro>();
+		
+		System.out.println("Voy a empezar");
+
+		//Cotilleamos el directorio actual
+		File dir = new File(".");
+		
+		//Añadimos los archivos al String para buscar
+		String[] archivos = dir.list();
+		
+		//Analizamos el nombre de cada archivo
+		for (int i=0; i<archivos.length; i++) {
+			if (archivos[i].startsWith("LibroJava_")) {
+				//Archivo valido
+		        //Borramos los primeros cinco caracteres.
+		        String identidad = archivos[i].substring(10);
+		        
+		        //Borramos extension archivo
+		        identidad = identidad.substring(0, identidad.length()-4);
+		        
+		        System.out.println(identidad);
+		        
+		        biblioteca.add(recuperar_libro(identidad));
+			}
+		}
+		
 		return biblioteca;
 	}
 

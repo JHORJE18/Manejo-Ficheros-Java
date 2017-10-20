@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JTextArea;
 
@@ -14,7 +15,7 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_panelLibro, actionListener_guardarLibro, actionListener_panelRecuLibro, actionListener_recuperarLibro;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_panelLibro, actionListener_guardarLibro, actionListener_panelRecuLibro, actionListener_listarLibros, actionListener_recuperarLibro;
 
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
@@ -170,7 +171,7 @@ public class GestionEventos {
 				}
 			}
 		};
-		view.getBtnRecuperar().addActionListener(actionListener_listarLibros);
+		view.getMntmListarLibros().addActionListener(actionListener_listarLibros);
 	}
 
 	private int call_compararContenido() throws IOException {
@@ -268,6 +269,7 @@ public class GestionEventos {
 		if (bookRecup != null) {
 			//Se ha recibido correctamente
 			view.setTextArea("Se ha recuperado el libro: ");
+			limpiarln(30);
 			view.addTextArea(bookRecup.mostrarDatos());
 		} else {
 			view.showError("Error: Comprueba que existe el libro y que no esta dañado");
@@ -276,8 +278,28 @@ public class GestionEventos {
 	}
 	
 	private int call_listarLibro() throws IOException {
+		//Recibe ArrayList
+		ArrayList <Libro> biblio = model.recuperar_todos();
 		
+		if (biblio != null) {
+			view.setTextArea("Se ha encontrado " + biblio.size());
+			for (int i=0; i<biblio.size(); i++) {
+				view.addTextArea(limpiarln(30));
+				view.addTextArea(biblio.get(i).mostrarDatos());
+				view.addTextArea(limpiarln(30));
+			}
+		}
 		return 1;
+	}
+	
+	public String limpiarln(int cantidad) {
+		String linea = "";
+		
+		for (int i=0; i<cantidad; i++) {
+			linea += "-";
+		}
+		
+		return linea;
 	}
 	
 }
