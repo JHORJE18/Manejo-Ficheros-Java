@@ -14,7 +14,7 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_panelLibro, actionListener_guardarLibro;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_panelLibro, actionListener_guardarLibro, actionListener_panelRecuLibro, actionListener_recuperarLibro;
 
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
@@ -99,17 +99,33 @@ public class GestionEventos {
 		
 		actionListener_panelLibro = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
+				view.mostrarSoloID(false);
 				//Mostrar panel guardar libro
 				if (view.getPanelCrearLibro().isVisible()) {
 					view.visiblidadPanel(false);
 					view.getMntmGuardarLibro().setText("Guardar libro");
 				} else {
 					view.visiblidadPanel(true);
-					view.getMntmGuardarLibro().setText("Cancelar");
+					view.getMntmGuardarLibro().setText("Cancelar nuevo libro");
 				}
 			}
 		};
 		view.getMntmGuardarLibro().addActionListener(actionListener_panelLibro);
+		
+		actionListener_panelRecuLibro = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				view.mostrarSoloID(true);
+				//Mostrar panel guardar libro
+				if (view.getPanelCrearLibro().isVisible()) {
+					view.visiblidadPanel(false);
+					view.getMntmRecuperarLibro().setText("Recuperar libro");
+				} else {
+					view.visiblidadPanel(true);
+					view.getMntmRecuperarLibro().setText("Cancelar recuperación");
+				}
+			}
+		};
+		view.getMntmRecuperarLibro().addActionListener(actionListener_panelRecuLibro);
 		
 		actionListener_guardarLibro = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -125,6 +141,36 @@ public class GestionEventos {
 			}
 		};
 		view.getBtnGuardar().addActionListener(actionListener_guardarLibro);
+		
+		actionListener_recuperarLibro = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				//Mostrar panel guardar libro
+				System.out.println("Se procede a recuperar un libro");
+				
+				try {
+					call_recuperarLibro();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					view.showError("Error al intentar guardar el libro");
+				}
+			}
+		};
+		view.getBtnRecuperar().addActionListener(actionListener_recuperarLibro);
+		
+		actionListener_listarLibros = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				//Mostrar panel guardar libro
+				System.out.println("Se procede a listar el libro");
+				
+				try {
+					call_listarLibro();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					view.showError("Error al intentar listar los libros");
+				}
+			}
+		};
+		view.getBtnRecuperar().addActionListener(actionListener_listarLibros);
 	}
 
 	private int call_compararContenido() throws IOException {
@@ -191,12 +237,47 @@ public class GestionEventos {
 	private int call_GuardarLibro() throws IOException {
 		//Creamos objeto libro
 		Libro lb = new Libro(view.getTxtID().getText(), view.getTxtTitulo().getText(), view.getTxtAutor().getText(), view.getTxtAno().getText(), view.getTxtEditor().getText(), view.getTxtPag().getText());
-		view.setTextArea("Generando libro... \n" + lb.mostrarDatos());
 		
 		//Enviamos objeto al controlador
-		int estado = 1;
+		int estado = model.guardar_libro(lb);
+		
+		view.setTextArea("Generando libro...");
+		view.addTextArea(lb.mostrarDatos());
+		
+		if (estado != 1) {
+			//Se ha producido algun error
+			switch (estado) {
+			case -1:
+				view.showError("Se ha producido un error desconocido");
+				break;
+			case -2:
+				view.showError("Ya existe un libro con el mismo ID");
+				break;
+			}
+		} else {
+			view.addTextArea("El libro " + "LibroJava" + lb.getId() + ".lbj" + ", se ha creado correctamente");
+		}
 		
 		return 1;
 	}
-
+	
+	private int call_recuperarLibro() throws IOException {
+		//Solicitamos el libro
+		Libro bookRecup = model.recuperar_libro(view.getTxtID().getText());
+		
+		if (bookRecup != null) {
+			//Se ha recibido correctamente
+			view.setTextArea("Se ha recuperado el libro: ");
+			view.addTextArea(bookRecup.mostrarDatos());
+		} else {
+			view.showError("Error: Comprueba que existe el libro y que no esta dañado");
+		}
+		return 1;
+	}
+	
+	private int call_listarLibro() throws IOException {
+		
+		return 1;
+	}
+	
 }

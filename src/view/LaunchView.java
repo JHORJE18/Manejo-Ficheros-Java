@@ -38,6 +38,8 @@ public class LaunchView extends JFrame {
 	private JButton btnGuardar;
 	private JMenu mnLibro;
 	private JMenuItem mntmGuardarLibro;
+	private JMenuItem mntmRecuperarLibro;
+	private JButton btnRecuperar;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -146,6 +148,9 @@ public class LaunchView extends JFrame {
         btnGuardar = new JButton("Guardar");
         panelCrearLibro.add(btnGuardar);
         
+        btnRecuperar = new JButton("Recuperar");
+        panelCrearLibro.add(btnRecuperar);
+        
         panelButtons = new JPanel();
         getContentPane().add(panelButtons, BorderLayout.NORTH);
         
@@ -202,8 +207,19 @@ public class LaunchView extends JFrame {
         
         mntmGuardarLibro = new JMenuItem("Guardar libro");
         mnLibro.add(mntmGuardarLibro);
+        
+        mntmRecuperarLibro = new JMenuItem("Recuperar libro");
+        mnLibro.add(mntmRecuperarLibro);
 	}	
 	
+	public JButton getBtnRecuperar() {
+		return btnRecuperar;
+	}
+
+	public void setBtnRecuperar(JButton btnRecuperar) {
+		this.btnRecuperar = btnRecuperar;
+	}
+
 	public JTextField getTxtID() {
 		return txtID;
 	}
@@ -311,6 +327,11 @@ public class LaunchView extends JFrame {
 	public void setTextArea(String txt) {
 		this.textArea.setText(txt);
 	}
+	
+	public void addTextArea(String txt) {
+		String antes = this.textArea.getText();
+		this.textArea.setText(antes + "\n" + txt);
+	}
 			
 	public JTextField getFichero1() {
 		return fichero1;
@@ -334,6 +355,28 @@ public class LaunchView extends JFrame {
 	
 	public JCheckBox getPrimera(){
 		return primera;
+	}
+	
+	public void mostrarSoloID(Boolean valor) {
+		this.lblTitulo.setVisible(!valor);
+		this.txtTitulo.setVisible(!valor);
+		this.lblAutor.setVisible(!valor);
+		this.txtAutor.setVisible(!valor);
+		this.lblAoPublicacin.setVisible(!valor);
+		this.txtAno.setVisible(!valor);
+		this.lblEditor.setVisible(!valor);
+		this.txtEditor.setVisible(!valor);
+		this.lblNmeroDePginas.setVisible(!valor);
+		this.txtPag.setVisible(!valor);
+		this.btnGuardar.setVisible(!valor);
+	}
+
+	public JMenuItem getMntmRecuperarLibro() {
+		return mntmRecuperarLibro;
+	}
+
+	public void setMntmRecuperarLibro(JMenuItem mntmRecuperarLibro) {
+		this.mntmRecuperarLibro = mntmRecuperarLibro;
 	}
 
 	public void showError(String m){

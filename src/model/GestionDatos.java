@@ -4,6 +4,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
+
+import objects.*;
 
 import javax.imageio.ImageIO;
 
@@ -125,6 +128,70 @@ public class GestionDatos {
         }
         
 		return bites;
+	}
+	
+	//Funcion Guardar Libros
+	public int guardar_libro(Libro libro) throws IOException {
+		
+		//Preparamos Archivo
+		File nuevoFile = new File("LibroJava_" + libro.getId() + ".lbj");
+		
+		//Checkeamos si existe
+		if (nuevoFile.exists()) {
+			//Error porque ya existe uno
+			return -2;
+		} else {
+			//Creamos archivo
+			if (!nuevoFile.createNewFile()) {
+				//Fichero fallido al crear
+				return -1;
+			}
+		}
+		
+		ObjectOutputStream objFile = new ObjectOutputStream(new FileOutputStream(nuevoFile));
+		
+		try {
+			objFile.writeObject(libro);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Ha petado al escribir el libro loco!");
+			return -1;
+		}
+		
+		//Ceramos archivo
+		objFile.close();
+		
+		//Se ha creado con éxito
+		return 1;
+	}
+	
+	//Recuperar libro
+	public Libro recuperar_libro(String identificador) throws FileNotFoundException, IOException{
+		//Buscamos si existe el fichero
+		File fileBook = new File("LibroJava_" + identificador + ".lbj");
+		if (!fileBook.exists()) {
+			//No existe, es imposible
+			return null;
+		}
+		
+		//Leemos archivo
+		ObjectInputStream lector = new ObjectInputStream(new FileInputStream(fileBook));
+		
+		//Lemos archivo y lo asignamos al libro recuperado
+		Libro lbRecu;
+		try {
+			lbRecu = (Libro) lector.readObject();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+		
+		return lbRecu;
+	}
+	
+	public ArrayList<Libro> recuperar_todos(){
+		ArrayList <Libro> biblioteca = new ArrayList <Libro>();
+		return biblioteca;
 	}
 
 }

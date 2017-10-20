@@ -1,6 +1,8 @@
 package objects;
 
-public class Libro {
+import java.io.Serializable;
+
+public class Libro implements Serializable {
 	
 	//Identificador, t ́ıtulo, autor, an ̃o de publicacio ́n, editor, nu ́mero de pa ́ginas.
 	
