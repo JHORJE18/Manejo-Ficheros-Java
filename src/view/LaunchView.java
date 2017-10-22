@@ -6,6 +6,16 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window.Type;
+import java.awt.event.KeyEvent;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.Component;
+import java.awt.Desktop;
+import java.awt.Color;
 
 public class LaunchView extends JFrame {
 
@@ -39,6 +49,12 @@ public class LaunchView extends JFrame {
 	private JMenuItem mntmRecuperarLibro;
 	private JButton btnRecuperar;
 	private JMenuItem mntmListarLibros;
+	private JMenu mnProyecto;
+	private Component horizontalGlue;
+	private JMenuItem mntmGithub;
+	private JMenuItem mntmFloridaUniversitaria;
+	private JMenuItem mntmJorgeLpezGil;
+	private JSeparator separator;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -188,6 +204,38 @@ public class LaunchView extends JFrame {
         
         mntmListarLibros = new JMenuItem("Listar libros");
         mnLibro.add(mntmListarLibros);
+        
+        horizontalGlue = Box.createHorizontalGlue();
+        menuBar.add(horizontalGlue);
+        
+        mnProyecto = new JMenu("Proyecto");
+        menuBar.add(mnProyecto);
+        
+        mntmGithub = new JMenuItem("GitHub");
+        mnProyecto.add(mntmGithub);
+        
+        mntmFloridaUniversitaria = new JMenuItem("Florida Universitaria");
+        mnProyecto.add(mntmFloridaUniversitaria);
+        
+        separator = new JSeparator();
+        mnProyecto.add(separator);
+        
+        mntmJorgeLpezGil = new JMenuItem("Jorge López Gil");
+        mntmJorgeLpezGil.setEnabled(false);
+        mnProyecto.add(mntmJorgeLpezGil);
+        
+        //Botones Web
+        mntmGithub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				openWeb("https://github.com/JHORJE18");
+			}});
+        mntmFloridaUniversitaria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				openWeb("http://www.floridauniversitaria.es/");
+			}});
+
 	}	
 	
 	public JMenuItem getMntmListarLibros() {
@@ -370,6 +418,17 @@ public class LaunchView extends JFrame {
 			    m,
 			    "Error",
 			    JOptionPane.ERROR_MESSAGE);
+	}
+	
+	//Abrir acceso directo
+	public void openWeb(String link) {
+		try {
+			  Desktop desktop = java.awt.Desktop.getDesktop();
+			  URI oURL = new URI(link);
+			  desktop.browse(oURL);
+			} catch (Exception e) {
+			  showError("No se ha podido abrir la web " + link);
+			}
 	}
 
 
