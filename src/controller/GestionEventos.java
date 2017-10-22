@@ -67,37 +67,7 @@ public class GestionEventos {
 		};
 		view.getCopiar().addActionListener(actionListener_copiar);
 		view.getMntmCopiarArchivo().addActionListener(actionListener_copiar);
-		
-		actionListener_rotar = new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				// TODO: Llamar a la funci�n call_buscarPalabra
-				try {
-					System.out.println("Llamo al metodo");
-					call_Rotar();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.print(e);
-					view.showError("Error al intentar rotar");
-				}
-			}
-		};
-		view.getMntmRotar().addActionListener(actionListener_rotar);
-		
-		actionListener_espejo = new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				// TODO: Llamar a la funci�n call_buscarPalabra
-				try {
-					System.out.println("Llamo al metodo");
-					call_Espejo();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.print(e);
-					view.showError("Error al intentar aplicar el modo Espejo");
-				}
-			}
-		};
-		view.getMntmEspejo().addActionListener(actionListener_espejo);
-		
+				
 		actionListener_panelLibro = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				view.mostrarSoloID(false);
@@ -223,18 +193,6 @@ public class GestionEventos {
 		
 	}
 	
-	private int call_Rotar() throws IOException {
-		view.showError("La función de rotar imagen, aún no esta desarrollada");
-		
-		return 1;		
-	}
-	
-	private int call_Espejo() throws IOException{
-		view.showError("La función de aplicar modo espejo a la imagen, aún no esta desarrollada");
-
-		return 1;
-	}
-	
 	private int call_GuardarLibro() throws IOException {
 		//Creamos objeto libro
 		Libro lb = new Libro(view.getTxtID().getText(), view.getTxtTitulo().getText(), view.getTxtAutor().getText(), view.getTxtAno().getText(), view.getTxtEditor().getText(), view.getTxtPag().getText());
@@ -243,7 +201,9 @@ public class GestionEventos {
 		int estado = model.guardar_libro(lb);
 		
 		view.setTextArea("Generando libro...");
+		view.addTextArea(limpiarln(30));
 		view.addTextArea(lb.mostrarDatos());
+		view.addTextArea(limpiarln(30));
 		
 		if (estado != 1) {
 			//Se ha producido algun error
@@ -269,7 +229,7 @@ public class GestionEventos {
 		if (bookRecup != null) {
 			//Se ha recibido correctamente
 			view.setTextArea("Se ha recuperado el libro: ");
-			limpiarln(30);
+			view.addTextArea(limpiarln(30));
 			view.addTextArea(bookRecup.mostrarDatos());
 		} else {
 			view.showError("Error: Comprueba que existe el libro y que no esta dañado");
@@ -281,13 +241,16 @@ public class GestionEventos {
 		//Recibe ArrayList
 		ArrayList <Libro> biblio = model.recuperar_todos();
 		
-		if (biblio != null) {
-			view.setTextArea("Se ha encontrado " + biblio.size());
+		//Muestra datos
+		if (biblio.size() != 0) {
+			view.setTextArea("Se ha encontrado " + biblio.size() + " libros");
 			for (int i=0; i<biblio.size(); i++) {
 				view.addTextArea(limpiarln(30));
 				view.addTextArea(biblio.get(i).mostrarDatos());
 				view.addTextArea(limpiarln(30));
 			}
+		} else {
+			view.showError("No se encuentran libros creados anteriormente, crea un nuevo libro");
 		}
 		return 1;
 	}

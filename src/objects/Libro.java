@@ -32,7 +32,7 @@ public class Libro implements Serializable {
 		datos += ("Autor: " + this.autor + "\n");
 		datos += ("Año publicación: " + this.anoPubli + "\n");
 		datos += ("Editor: " + this.editor + "\n");
-		datos += ("Número Páginas: " + this.numPag + "\n");
+		datos += ("Número Páginas: " + this.numPag);
 		
 		
 		return datos;

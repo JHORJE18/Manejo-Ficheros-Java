@@ -18,9 +18,7 @@ public class LaunchView extends JFrame {
 	private JPanel panel;
 	private JMenuBar menuBar;
 	private JMenu mnArchivo;
-	private JMenu mnImagen;
 	private JMenuItem mntmCompararContenido, mntmBuscarPalabra, mntmCopiarArchivo;
-	private JMenuItem mntmRotar, mntmEspejo;
 	private JPanel panelCrearLibro;
 	private JLabel lblIdentificador;
 	private JTextField txtID;
@@ -64,22 +62,6 @@ public class LaunchView extends JFrame {
 
 	public void setMntmCopiarArchivo(JMenuItem mntmCopiarArchivo) {
 		this.mntmCopiarArchivo = mntmCopiarArchivo;
-	}
-
-	public JMenuItem getMntmRotar() {
-		return mntmRotar;
-	}
-
-	public void setMntmRotar(JMenuItem mntmRotar) {
-		this.mntmRotar = mntmRotar;
-	}
-
-	public JMenuItem getMntmEspejo() {
-		return mntmEspejo;
-	}
-
-	public void setMntmEspejo(JMenuItem mntmEspejo) {
-		this.mntmEspejo = mntmEspejo;
 	}
 
 	public LaunchView() {
@@ -194,15 +176,6 @@ public class LaunchView extends JFrame {
         
         mntmCopiarArchivo = new JMenuItem("Copiar archivo");
         mnArchivo.add(mntmCopiarArchivo);
-        
-        mnImagen = new JMenu("Imagen");
-        menuBar.add(mnImagen);
-        
-        mntmRotar = new JMenuItem("Rotar 90º");
-        mnImagen.add(mntmRotar);
-        
-        mntmEspejo = new JMenuItem("Espejo");
-        mnImagen.add(mntmEspejo);
         
         mnLibro = new JMenu("Libro");
         menuBar.add(mnLibro);
