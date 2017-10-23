@@ -205,10 +205,7 @@ public class GestionDatos {
 			if (archivos[i].startsWith("LibroJava_")) {
 				//Archivo valido
 		        //Borramos los primeros cinco caracteres.
-		        String identidad = archivos[i].substring(10);
-		        
-		        //Borramos extension archivo
-		        identidad = identidad.substring(0, identidad.length()-4);
+		        String identidad = archivos[i].substring(10, archivos[i].length()-4);
 		        
 		        System.out.println(identidad);
 		        
