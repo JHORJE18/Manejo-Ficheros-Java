@@ -215,5 +215,26 @@ public class GestionDatos {
 		
 		return biblioteca;
 	}
+	
+	// #EJ1 Metodo encargado de eliminar el anterior libro
+	public int eliminarLibro(Libro lb) {
+		//Creamos fichero
+		File origen = new File("LibroJava_" + lb.getId() + ".lbj");
+		
+		//Comprobamos que existe
+		if (!origen.exists()) {
+			//No existe, salta un error!
+			return -3;
+		}
+		
+		//Procedemos a eliminar el fichero
+		if (!origen.delete()) {
+			//No se ha podido eliminar el anterior fichero
+			return -2;
+		}
+		
+		//Fichero del libro eliminado correctamente
+		return 1;
+	}
 
 }

@@ -55,6 +55,8 @@ public class LaunchView extends JFrame {
 	private JMenuItem mntmFloridaUniversitaria;
 	private JMenuItem mntmJorgeLpezGil;
 	private JSeparator separator;
+	private JMenuItem mntmCambiarAoLibro;
+	private JButton btnCambiarAno;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -148,6 +150,9 @@ public class LaunchView extends JFrame {
         btnGuardar = new JButton("Guardar");
         panelCrearLibro.add(btnGuardar);
         
+        btnCambiarAno = new JButton("Cambiar Año");
+        panelCrearLibro.add(btnCambiarAno);
+        
         btnRecuperar = new JButton("Recuperar");
         panelCrearLibro.add(btnRecuperar);
         
@@ -205,6 +210,9 @@ public class LaunchView extends JFrame {
         mntmListarLibros = new JMenuItem("Listar libros");
         mnLibro.add(mntmListarLibros);
         
+        mntmCambiarAoLibro = new JMenuItem("Cambiar año libro");
+        mnLibro.add(mntmCambiarAoLibro);
+        
         horizontalGlue = Box.createHorizontalGlue();
         menuBar.add(horizontalGlue);
         
@@ -238,6 +246,14 @@ public class LaunchView extends JFrame {
 
 	}	
 	
+	public JMenuItem getMntmCambiarAoLibro() {
+		return mntmCambiarAoLibro;
+	}
+
+	public void setMntmCambiarAoLibro(JMenuItem mntmCambiarAoLibro) {
+		this.mntmCambiarAoLibro = mntmCambiarAoLibro;
+	}
+
 	public JMenuItem getMntmListarLibros() {
 		return mntmListarLibros;
 	}
@@ -391,6 +407,14 @@ public class LaunchView extends JFrame {
 		return primera;
 	}
 	
+	public JButton getBtnCambiarAno() {
+		return btnCambiarAno;
+	}
+
+	public void setBtnCambiarAno(JButton btnCambiarAno) {
+		this.btnCambiarAno = btnCambiarAno;
+	}
+	
 	public void mostrarSoloID(Boolean valor) {
 		this.lblTitulo.setVisible(!valor);
 		this.txtTitulo.setVisible(!valor);
@@ -403,6 +427,25 @@ public class LaunchView extends JFrame {
 		this.lblNmeroDePginas.setVisible(!valor);
 		this.txtPag.setVisible(!valor);
 		this.btnGuardar.setVisible(!valor);
+		this.btnCambiarAno.setVisible(!valor);
+		this.btnRecuperar.setVisible(valor);
+	}
+
+	// #EJ1 Creamos interfaz unica
+	public void mostrarIDAno(Boolean valor) {
+		this.lblTitulo.setVisible(!valor);
+		this.txtTitulo.setVisible(!valor);
+		this.lblAutor.setVisible(!valor);
+		this.txtAutor.setVisible(!valor);
+		this.lblEditor.setVisible(!valor);
+		this.txtEditor.setVisible(!valor);
+		this.lblNmeroDePginas.setVisible(!valor);
+		this.txtPag.setVisible(!valor);
+		this.btnGuardar.setVisible(!valor);
+		this.btnRecuperar.setVisible(!valor);
+		this.btnCambiarAno.setVisible(valor);
+		this.txtAno.setVisible(valor);
+		this.lblAoPublicacin.setVisible(valor);
 	}
 
 	public JMenuItem getMntmRecuperarLibro() {
