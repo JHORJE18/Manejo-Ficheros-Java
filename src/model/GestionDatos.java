@@ -236,5 +236,31 @@ public class GestionDatos {
 		//Fichero del libro eliminado correctamente
 		return 1;
 	}
+	
+	// #EJ2 Metodo para buscar palabras con una x longitud
+	public int leerLongitudes (String file, int longitud) throws IOException{
+		
+		//Abrimos el nuevo archivo
+		BufferedReader archivo = abrirFichero(file);
+
+		//Creamos variables para contener el contador y la palabra temp
+		int contador = 0;
+		String palabra;
+		
+		//Leemos cada linea
+		while ((palabra = archivo.readLine()) != null){
+			
+			//Si la palabra tiene menos de la longitud introducida por el usuario, cuentala!
+			if (palabra.length() < longitud) {
+				//Palabra válida
+				contador++;
+			}
+		}
+		
+		//Cerramos archivo
+		archivo.close();
+		
+		return contador;
+	}
 
 }

@@ -57,6 +57,8 @@ public class LaunchView extends JFrame {
 	private JSeparator separator;
 	private JMenuItem mntmCambiarAoLibro;
 	private JButton btnCambiarAno;
+	private JMenuItem mntmLocalizarNumPalabras;
+	private JButton btnNumPalab;
 	
 	public JMenuItem getMntmCompararContenido() {
 		return mntmCompararContenido;
@@ -169,6 +171,11 @@ public class LaunchView extends JFrame {
         panelButtons.add(copiar);
         copiar.setPreferredSize(new Dimension(150, 26));
         
+        btnNumPalab = new JButton("Buscar palabras");
+        btnNumPalab.setPreferredSize(new Dimension(150, 26));
+        btnNumPalab.setVisible(false);
+        panelButtons.add(btnNumPalab);
+        
         label_f1 = new JLabel("Fichero 1:");
         panelButtons.add(label_f1);
         
@@ -197,6 +204,9 @@ public class LaunchView extends JFrame {
         
         mntmCopiarArchivo = new JMenuItem("Copiar archivo");
         mnArchivo.add(mntmCopiarArchivo);
+        
+        mntmLocalizarNumPalabras = new JMenuItem("Localizar num Palabras");
+        mnArchivo.add(mntmLocalizarNumPalabras);
         
         mnLibro = new JMenu("Libro");
         menuBar.add(mnLibro);
@@ -246,6 +256,38 @@ public class LaunchView extends JFrame {
 
 	}	
 	
+	public JMenuItem getMntmLocalizarNumPalabras() {
+		return mntmLocalizarNumPalabras;
+	}
+
+	public void setMntmLocalizarNumPalabras(JMenuItem mntmLocalizarNumPalabras) {
+		this.mntmLocalizarNumPalabras = mntmLocalizarNumPalabras;
+	}
+
+	public JLabel getLabel_f2() {
+		return label_f2;
+	}
+
+	public void setLabel_f2(JLabel label_f2) {
+		this.label_f2 = label_f2;
+	}
+
+	public JLabel getLabel_pal() {
+		return label_pal;
+	}
+
+	public void setLabel_pal(JLabel label_pal) {
+		this.label_pal = label_pal;
+	}
+
+	public JButton getBtnNumPalab() {
+		return btnNumPalab;
+	}
+
+	public void setBtnNumPalab(JButton btnNumPalab) {
+		this.btnNumPalab = btnNumPalab;
+	}
+
 	public JMenuItem getMntmCambiarAoLibro() {
 		return mntmCambiarAoLibro;
 	}

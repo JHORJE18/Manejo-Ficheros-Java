@@ -15,8 +15,11 @@ public class GestionEventos {
 
 	private GestionDatos model;
 	private LaunchView view;
-	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, actionListener_panelLibro, actionListener_guardarLibro, actionListener_panelRecuLibro, actionListener_listarLibros, actionListener_recuperarLibro, actionListener_cambiarAnyo, actionListener_panelCambiarAno;
-
+	private boolean activo = true;
+	private ActionListener actionListener_comparar, actionListener_buscar, actionListener_copiar, actionListener_rotar, actionListener_espejo, 
+	actionListener_panelLibro, actionListener_guardarLibro, actionListener_panelRecuLibro, actionListener_listarLibros, actionListener_recuperarLibro, 
+	actionListener_cambiarAnyo, actionListener_panelCambiarAno, actionListener_panelNumPalabrs, actinListener_numPalabrs;
+	
 	public GestionEventos(GestionDatos model, LaunchView view) {
 		this.model = model;
 		this.view = view;
@@ -98,21 +101,41 @@ public class GestionEventos {
 		};
 		view.getMntmRecuperarLibro().addActionListener(actionListener_panelRecuLibro);
 
-		//Panel cambiar año
-		actionListener_panelCambiarAno = new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				view.mostrarIDAno(true);
-				//Mostrar panel guardar libro
-				if (view.getPanelCrearLibro().isVisible()) {
-					view.visiblidadPanel(false);
-					view.getMntmCambiarAoLibro().setText("Cambiar año del libro");
-				} else {
-					view.visiblidadPanel(true);
-					view.getMntmCambiarAoLibro().setText("Cancelar cambio de año");
-				}
-			}
-		};
-		view.getMntmCambiarAoLibro().addActionListener(actionListener_panelCambiarAno);
+		// #EJ1 Panel cambiar año
+				actionListener_panelCambiarAno = new ActionListener() {
+					public void actionPerformed(ActionEvent actionEvent) {
+						view.mostrarIDAno(true);
+						//Mostrar panel guardar libro
+						if (view.getPanelCrearLibro().isVisible()) {
+							view.visiblidadPanel(false);
+							view.getMntmCambiarAoLibro().setText("Cambiar año del libro");
+						} else {
+							view.visiblidadPanel(true);
+							view.getMntmCambiarAoLibro().setText("Cancelar cambio de año");
+						}
+					}
+				};
+				view.getMntmCambiarAoLibro().addActionListener(actionListener_panelCambiarAno);
+				
+				// #EJ2 Panel buscar palabras
+				actionListener_panelNumPalabrs = new ActionListener() {
+					public void actionPerformed(ActionEvent actionEvent) {
+						if (activo) {
+							view.getBtnNumPalab().setVisible(true);
+							view.getFichero2().setVisible(false);
+							view.getLabel_f2().setVisible(false);
+							view.getLabel_pal().setText("Longitud");
+							activo = false;
+						} else {
+							view.getBtnNumPalab().setVisible(false);
+							view.getFichero2().setVisible(true);
+							view.getLabel_f2().setVisible(true);
+							view.getLabel_pal().setText("Palabra");
+							activo = true;
+						}
+					}
+				};
+				view.getMntmLocalizarNumPalabras().addActionListener(actionListener_panelNumPalabrs);
 
 		actionListener_guardarLibro = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -159,6 +182,7 @@ public class GestionEventos {
 		};
 		view.getMntmListarLibros().addActionListener(actionListener_listarLibros);
 		
+		// #EJ1 Listener llamar al metodo
 		actionListener_cambiarAnyo = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				//Mostrar panel guardar libro
@@ -173,6 +197,23 @@ public class GestionEventos {
 			}
 		};
 		view.getBtnCambiarAno().addActionListener(actionListener_cambiarAnyo);
+		
+		// #EJ2 Listener llamar al metodo
+		actinListener_numPalabrs = new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				//Mostrar panel guardar libro
+				System.out.println("Se procede a leer x num de palabras");
+				
+				try {
+					call_numPalabras();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					view.showError("Error al intentar leer el num de palabras");
+				}
+			}
+		};
+		view.getBtnNumPalab().addActionListener(actinListener_numPalabrs);
+
 	}
 
 	private int call_compararContenido() throws IOException {
@@ -361,6 +402,30 @@ public class GestionEventos {
 				view.addTextArea("Se ha cambiado el año " + antiguoAño + " al año " + bookRecup.getAnoPubli());
 			}
 		
+		}
+		
+		return 1;
+	}
+	
+	// #EJ2 Metodo para leer x numero de palabras
+	private int call_numPalabras() throws IOException {
+		int longitud = 0;
+		try {
+			longitud = Integer.parseInt(view.getPalabra().getText());
+		} catch (Exception e) {
+			//No ha introducido un numero valido
+			view.showError("No se ha introducido un numero de palabras valido");
+			return -1;
+		}
+		int palabrasLoc = model.leerLongitudes(view.getFichero1().getText(), longitud);
+		
+		//Muestra palabras encontradas solo si...
+		if (palabrasLoc != 0) {
+			//Se han encontrado
+			view.addTextArea("Se han localizado " + palabrasLoc + " palabras con menos de " + longitud + " caracteres en el fichero " + view.getFichero1().getText());
+		} else {
+			//No se han encontrado palabras
+			view.showError("Se han encontrado 0 palabras con " + longitud + " caracteres");
 		}
 		
 		return 1;
